@@ -1,0 +1,13 @@
+.pos-fixed {
+    position: fixed;
+}
+.ui-checkbox.pos-fixed.dark{
+    right:10px;
+    position: fixed;
+}
+.margin-2b {
+    margin-bottom: 2rem;
+}
+.width-100{
+    width: 100%;
+}
