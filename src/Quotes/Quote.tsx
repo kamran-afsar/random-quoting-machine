@@ -10,6 +10,7 @@ export const RandomQuotes: React.FunctionComponent = () => {
     quote: "",
     author: "",
   });
+  const [randomColor, setRandomColor] = React.useState(getRandomColor())
   const [quotesLibrary, setQuotes] = React.useState([]);
   React.useEffect(() => {
     get(quotesEndpoint).then((res: any) => {
@@ -22,8 +23,10 @@ export const RandomQuotes: React.FunctionComponent = () => {
     const randomNumber = Math.floor(Math.random() * quotes.length);
     setRandomQuote(quotes[randomNumber]);
   };
-  const handleClick = () => getRandomQuotes(quotesLibrary);
-  const randomColor = getRandomColor();
+  const handleClick = () => {
+    getRandomQuotes(quotesLibrary);
+    setRandomColor(getRandomColor());
+  }
   const primaryButtonStyle = () => {
     return {
       backgroundColor: randomColor,
@@ -32,7 +35,7 @@ export const RandomQuotes: React.FunctionComponent = () => {
     }
   }
   const tweetUrl = 'https://twitter.com/intent/tweet?hashtags=quotes&related=kamranafsar&text=' + 
-  encodeURIComponent('"' + randomQuote.quote + '" ' + randomQuote.author)
+  encodeURIComponent('"' + randomQuote.quote + '" ' + randomQuote.author);
   return (
     <Segment className="main-segment quote-box" key="segment-quote" >
       <Flex padding="padding.medium" gap="gap.medium" key="flex-segment-1">
