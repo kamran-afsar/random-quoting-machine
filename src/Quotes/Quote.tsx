@@ -13,6 +13,7 @@ export const RandomQuotes: React.FunctionComponent<RandomQuotesProps> = (p) => {
   const [randomQuote, setRandomQuote] = React.useState({quote: "",author: ""});
   const [randomColor, setRandomColor] = React.useState(getRandomColor())
   const [quotesLibrary, setQuotes] = React.useState([]);
+  const {isDarkTheme} = p;
   React.useEffect(() => {
     get(quotesEndpoint).then((res: any) => {
       const temp = res.data.quotes;
@@ -29,11 +30,8 @@ export const RandomQuotes: React.FunctionComponent<RandomQuotesProps> = (p) => {
     setRandomColor(getRandomColor());
   }
   const primaryButtonStyle = () => {
-    return {
-      backgroundColor: randomColor,
-      ":hover": { backgroundColor: p.isDarkTheme?  "#000" :"#fff", color: "#464775" },
-      ":active": { backgroundColor: p.isDarkTheme?  "#000" :"#fff", color: "#464775" }
-    }
+    const styleObj = { backgroundColor: isDarkTheme?  "transparent" :"#fff", color: isDarkTheme ? "#a6a7dc" : "#6264a7" }
+    return { backgroundColor: randomColor, ":hover": styleObj, ":active": styleObj }
   }
   const tweetUrl = 'https://twitter.com/intent/tweet?hashtags=quotes&related=kamranafsar&text=' + 
   encodeURIComponent('"' + randomQuote.quote + '" ' + randomQuote.author);
