@@ -12,7 +12,7 @@ function App() {
   return (
 <Provider theme={darkTheme ? teamsDarkTheme: teamsTheme}>
       <Navbar goDark={(dark) => handleTheme(dark)} />
-      <RandomQuotes />
+      <RandomQuotes isDarkTheme={darkTheme} />
     </Provider>
   );
 }
