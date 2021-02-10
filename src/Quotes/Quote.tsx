@@ -9,14 +9,14 @@ import { getRandomColor } from "../ColorPallets";
 interface RandomQuotesProps{
   isDarkTheme:boolean;
 }
-export const RandomQuotes: React.FunctionComponent<RandomQuotesProps> = (p) => {
-  const [randomQuote, setRandomQuote] = React.useState({quote: "",author: ""});
+export const RandomQuotes: React.FunctionComponent<RandomQuotesProps> = React.memo((p) => {
+  const [randomQuote, setRandomQuote] = React.useState({text: "", author: ""});
   const [randomColor, setRandomColor] = React.useState(getRandomColor())
   const [quotesLibrary, setQuotes] = React.useState([]);
   const {isDarkTheme} = p;
   React.useEffect(() => {
     get(quotesEndpoint).then((res: any) => {
-      const temp = res.data.quotes;
+      const temp = res.data;
       getRandomQuotes(temp);
       setQuotes(temp);
     });
@@ -34,11 +34,11 @@ export const RandomQuotes: React.FunctionComponent<RandomQuotesProps> = (p) => {
     return { backgroundColor: randomColor, ":hover": styleObj, ":active": styleObj }
   }
   const tweetUrl = 'https://twitter.com/intent/tweet?hashtags=quotes&related=kamranafsar&text=' + 
-  encodeURIComponent('"' + randomQuote.quote + '" ' + randomQuote.author);
+  encodeURIComponent('"' + randomQuote.text + '" ' + randomQuote.author);
   return (
     <Segment className="main-segment quote-box" key="segment-quote" >
       <Flex padding="padding.medium" gap="gap.medium" key="flex-segment-1">
-        <Text key={randomQuote.quote.substring(10)} content={randomQuote.quote} size="large" weight="bold" styles={{ color: randomColor }} />
+        <Text key={randomQuote.text.substring(10)} content={randomQuote.text} size="large" weight="bold" styles={{ color: randomColor }} />
       </Flex>
       <Flex key="flex-segment-2" padding="padding.medium" gap="gap.medium">
         <Text key={randomQuote.author} content={`~${randomQuote.author}`} styles={{ color: randomColor }} />
@@ -53,4 +53,4 @@ export const RandomQuotes: React.FunctionComponent<RandomQuotesProps> = (p) => {
       </Flex>
     </Segment>
   );
-};
+});
