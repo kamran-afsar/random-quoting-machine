@@ -3,7 +3,7 @@ import { get, quotesEndpoint } from "../apiHelper";
 import { Segment, Text, Flex, Button } from "@fluentui/react-northstar";
 import { Quote } from "../models/Quote";
 import "../App.css";
-import { getRandomColor } from "../ColorPallets";
+import { getRandomColor, getRandomColorV2 } from "../ColorPallets";
 import { IndexedDbExample } from "../IndexedDb/indexedDbUseCases";
 
 interface RandomQuotesProps {
@@ -15,7 +15,7 @@ export const RandomQuotes: React.FunctionComponent<RandomQuotesProps> =
       author: "",
       quote: "",
     });
-    const [randomColor, setRandomColor] = React.useState(getRandomColor());
+    const [randomColor, setRandomColor] = React.useState(getRandomColorV2());
     const [quotesLibrary, setQuotes] = React.useState([]);
     const { isDarkTheme } = p;
     React.useEffect(() => {
