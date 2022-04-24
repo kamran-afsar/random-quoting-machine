@@ -15,7 +15,7 @@ export const RandomQuotes: React.FunctionComponent<RandomQuotesProps> =
       author: "",
       quote: "",
     });
-    const [randomColor, setRandomColor] = React.useState(getRandomColor());
+    const [randomColor, setRandomColor] = React.useState(getRandomColorV2());
     const [quotesLibrary, setQuotes] = React.useState([]);
     const { isDarkTheme } = p;
     React.useEffect(() => {
